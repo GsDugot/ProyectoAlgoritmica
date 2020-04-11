@@ -8,22 +8,19 @@ namespace ProyectoParcial1
 {
     class Patient
     {
-        private int numero;
-        private int prioridad;
-        private bool estado;
-        //private Patient next;
+
 
         public int Numero { get; set; }
         public int Prioridad { get; set; }
         public bool Estado { get; set; }
-        //internal Patient Next { get => next; set => next = value; }
+        public Patient Next { get; set; }
 
-        public Patient(int numero, int prioridad, bool estado)
+        public Patient(int numero, int prioridad, bool estado, Patient next)
         {
             this.Numero = numero;
             this.Prioridad = prioridad;
             this.Estado = estado;
-            //this.Next = next;
+            this.Next = next;
         }
     }
 }

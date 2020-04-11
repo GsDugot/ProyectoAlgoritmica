@@ -12,17 +12,16 @@ namespace ProyectoParcial1
 
         Stopwatch sw = new Stopwatch();
 
-        LinkedList<Patient> list = new LinkedList<Patient>();
         int size = 0;
         int index = 0;
         int prior = 0;
         bool state = false;
         static Random random = new Random();
         Patient pat;
+        Patient pat2;
 
         public void createArray()
         {
-
             Console.WriteLine("Ingrese tamaño del arreglo");
             int length = Int32.Parse(Console.ReadLine());
             size = length;
@@ -33,19 +32,35 @@ namespace ProyectoParcial1
             {
                 index = i + 1;
                 prior = random.Next(1, 3);
-                state = false;
 
-                pat = new Patient(index, prior, state);
-
-                list.AddLast(pat);
-
-               // Console.WriteLine("Paciente " + list.Numero + " > indice: " + index +
-                //    " prioridad: "+ prior + " estado: " + state);
+                addPatient(index, prior, state);
             }
-            foreach (var element in list)
+            showPatients();
+        }
+        public void addPatient(int indx, int prior, bool state)
+        {
+            
+            if (pat == null)
             {
-                Console.WriteLine("Paciente " + (element.Numero +1) + " > indice: " + element.Numero +
-                    " prioridad: " + element.Prioridad + " estado: " + element.Estado);
+                pat = new Patient(indx, prior, state, null);
+                pat2 = pat;
+            }
+            else
+            {
+                Patient recent = new Patient(indx, prior, state, null);
+                Patient aux = pat;
+                pat = recent;
+                aux.Next = pat;
+            }
+        }
+        public void showPatients()
+        {
+            Patient aux = pat2;
+            while (aux.Next != null)
+            {
+                Console.WriteLine("No. paciente: " + aux.Numero + " prioridad: " + aux.Prioridad + " estado: " +
+                     aux.Estado);
+                aux = aux.Next;
             }
         }
     }
