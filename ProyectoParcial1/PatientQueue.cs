@@ -16,6 +16,7 @@ namespace ProyectoParcial1
         int index = 0;
         int prior = 0;
         bool state = false;
+        int numAten = 0;
         static Random random = new Random();
         Patient pat;
         Patient pat2;
@@ -42,12 +43,12 @@ namespace ProyectoParcial1
             
             if (pat == null)
             {
-                pat = new Patient(indx, prior, state, null);
+                pat = new Patient(indx, prior, state, 0, null);
                 pat2 = pat;
             }
             else
             {
-                Patient recent = new Patient(indx, prior, state, null);
+                Patient recent = new Patient(indx, prior, state, 0, null);
                 Patient aux = pat;
                 pat = recent;
                 aux.Next = pat;
@@ -58,8 +59,8 @@ namespace ProyectoParcial1
             Patient aux = pat2;
             while (aux.Next != null)
             {
-                Console.WriteLine("No. paciente: " + aux.Numero + " prioridad: " + aux.Prioridad + " estado: " +
-                     aux.Estado);
+                Console.WriteLine("No. paciente: " + aux.NumeroLlegada + " prioridad: " + aux.Prioridad +
+                   " estado: " + aux.Estado + " No. Atendido: " + aux.NumeroAtendido);
                 aux = aux.Next;
             }
         }

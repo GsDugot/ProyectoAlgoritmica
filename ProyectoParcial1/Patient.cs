@@ -10,16 +10,18 @@ namespace ProyectoParcial1
     {
 
 
-        public int Numero { get; set; }
+        public int NumeroLlegada { get; set; }
         public int Prioridad { get; set; }
         public bool Estado { get; set; }
+        public int NumeroAtendido { get; set; }
         public Patient Next { get; set; }
 
-        public Patient(int numero, int prioridad, bool estado, Patient next)
+        public Patient(int numeroLlegada, int prioridad, bool estado, int numeroAtendido, Patient next)
         {
-            this.Numero = numero;
+            this.NumeroLlegada = numeroLlegada;
             this.Prioridad = prioridad;
             this.Estado = estado;
+            this.NumeroAtendido = numeroAtendido;
             this.Next = next;
         }
     }
