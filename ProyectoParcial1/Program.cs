@@ -16,14 +16,90 @@ namespace ProyectoParcial1
         public static void run()
         {
             PatientQueue pq = new PatientQueue();
-            pq.createArray();
-            //pq.cambiarDatos(0, 4);
-            //pq.cambiarDatos(1, 5);
-            //pq.cambiarDatos(1, 5);
+            
+            bool isProgramEnd = false;
+            Console.WriteLine("---------Sistema de pacientes-----");
+            Console.WriteLine("Ingrese el tamaño de la lista");
+            try {
+                int rango = int.Parse(Console.ReadLine());
+                ///
+                /// Metodo de cola
+                ///
+                pq.createArray(rango);
 
 
 
-            pq.showPatients();
+                while (!isProgramEnd)
+            {
+
+                    Console.WriteLine("------------Método de ordenamiento------------");
+                    Console.WriteLine("1.- Ordenar por selectionSort");
+                    Console.WriteLine("2.- Ordenar por quickSort");
+                    int method = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("------------Reportes------------");
+                    Console.WriteLine("1.- Ordenar por numero de ficha o de llegada");
+                    Console.WriteLine("2.- Ordenar por orden de atención");
+                    Console.WriteLine("3.- Ordenar por prioridad");
+                    Console.WriteLine("4.- salir");
+                    int reportNumber = int.Parse(Console.ReadLine());
+                   
+                    
+                    switch(reportNumber)
+                    {
+                        case 1:
+                            if(method == 1)
+                            {
+                                pq.SelectionSort("NumeroLlegada");
+                                pq.showPatients();
+
+
+                            }
+                            else if( method==2)
+                            {
+
+                            }
+                            break;
+                        case 2:
+                            if (method == 1)
+                            {
+                                pq.SelectionSort("NumeroAtendido");
+                                pq.showPatients();
+                            }
+                            else if (method == 2)
+                            {
+
+                            }
+                            break;
+                        case 3:
+                            Console.WriteLine("---------Ingrese prioridad 1 o 2---------");
+                            int prioridad = int.Parse(Console.ReadLine());
+                            if (method == 1)
+                            {
+                                pq.SelectionSort("Prioridad");
+                                pq.showPatienByPriority(1);
+                            }
+                            else if (method == 2)
+                            {
+
+                            }
+                            break;
+                        case 4:
+                            isProgramEnd = true;
+                            break;
+
+
+                    }
+
+
+                }
+            } catch
+            {
+                Console.WriteLine("Numero no valido");
+            }
+
+
+            /*pq.showPatients();
             pq.addAtendido();
             Console.WriteLine();
 
@@ -36,7 +112,7 @@ namespace ProyectoParcial1
 
             pq.showPatients();
             pq.showPatienByPriority(1);
-            pq.showPatienByPriority(2);
+            pq.showPatienByPriority(2);*/
 
 
 

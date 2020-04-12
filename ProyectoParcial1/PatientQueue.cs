@@ -23,29 +23,27 @@ namespace ProyectoParcial1
         Patient patArrival;
         Patient pat3;
 
-        public void createArray()
+        public void createArray(int length)
         {
-               Console.WriteLine("Ingrese tamaño del arreglo");
-               int length = Int32.Parse(Console.ReadLine());
-               size = length;
+            size = length;
 
-               for (int i = 0; i < size; i++)
-               {
-                   index = i + 1;
-                   prior = random.Next(1, 3);
-
-                   addPatient(index, prior, state);
-               }              
-
-            quickSort(pat2, pat);
-
-            showPatientsArrivalOrder(patArrival);
-
+            for (int i = 0; i < size; i++)
+            {
+                index = i + 1;
+                prior = random.Next(1, 3);
 
                 addPatient(index, prior, state);
             }
-            //showPatients();
+
+            //quickSort(pat2, pat);
+            addAtendido();
+            showPatientsArrivalOrder(patArrival);
+
+
+           // addPatient(index, prior, state);
         }
+        //showPatients();
+
         public void addPatient(int indx, int prior, bool state)
         {
 
@@ -75,7 +73,7 @@ namespace ProyectoParcial1
                 aux = aux.Next;
             }
         }
-  
+
         public void showPatientsArrivalOrder(Patient first)
         {
 
@@ -86,9 +84,9 @@ namespace ProyectoParcial1
                 first = first.Next;
             }
         }
-       public Patient partition(Patient left, Patient right)
-       {
-            if(left == right || left == null || left == null)
+        public Patient partition(Patient left, Patient right)
+        {
+            if (left == right || left == null || left == null)
             {
                 return left;
             }
@@ -114,9 +112,9 @@ namespace ProyectoParcial1
                 j.NumeroLlegada = piv;
                 right.NumeroLlegada = tmp2;
             }
-           
+
             return i;
-       }
+        }
         public void quickSort(Patient first, Patient last)
         {
             if (first == last)
@@ -127,7 +125,7 @@ namespace ProyectoParcial1
             Patient pivotNode = partition(first, last);
             quickSort(first, pivotNode);
             Patient current = pivotNode;
-           
+
             if (pivotNode != null && pivotNode == first)
             {
                 quickSort(pivotNode.Next, last);
@@ -144,7 +142,7 @@ namespace ProyectoParcial1
 
             Patient auxHead = pat2;
             int size = getSize();
-            for (int x = 0; x < size-1; x++)//n-1
+            for (int x = 0; x < size - 1; x++)//n-1
             {
                 int minimo = getData(OrdenType, x); ;//numberArray[x];//1
                 int indice = x;//1
@@ -163,7 +161,7 @@ namespace ProyectoParcial1
                 {
                     cambiarDatos(x, indice);
                 }
-                
+
 
 
 
@@ -252,7 +250,7 @@ namespace ProyectoParcial1
             while (aux != null)
             {
 
-                aux.NumeroAtendido = random.Next(1,100);
+                aux.NumeroAtendido = random.Next(1, 100);
                 aux = aux.Next;
             }
         }
@@ -295,6 +293,9 @@ namespace ProyectoParcial1
                 aux = aux.Next;
             }
         }
-
     }
 }
+
+
+
+
