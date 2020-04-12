@@ -22,7 +22,14 @@ namespace ProyectoParcial1
             this.Prioridad = prioridad;
             this.Estado = estado;
             this.NumeroAtendido = numeroAtendido;
-            this.Next = next;
+            if (next != null)
+            {
+                this.Next = new Patient(next.NumeroLlegada, next.Prioridad, next.Estado, next.NumeroAtendido, next.Next);
+            }
+            else
+            {
+                this.Next = next;
+            }
         }
     }
 }
