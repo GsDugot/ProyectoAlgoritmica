@@ -67,22 +67,21 @@ namespace ProyectoParcial1
             }
         }
 
-        public void prioritySort(string OrdenType)
+        public void SelectionSort(string OrdenType)
         {
 
             Patient auxHead = pat2;
             int size = getSize();
-            for (int x = 0; x < size; x++)//n-1
+            for (int x = 0; x < size-1; x++)//n-1
             {
                 int minimo = getData(OrdenType, x); ;//numberArray[x];//1
                 int indice = x;//1
                 for (int y = x + 1; y < size; y++)//n-1				{
-
                 {
                     int actualData = getData(OrdenType, y);
-                    if (actualData <= minimo)//3
+                    if (actualData < minimo)//3
                     {
-                        //minimo = actualData;//1
+                        minimo = actualData;//1
                         indice = y;//1
 
                     }
@@ -92,9 +91,7 @@ namespace ProyectoParcial1
                 {
                     cambiarDatos(x, indice);
                 }
-
-                //numberArray[indice] = numberArray[x];//1
-                //numberArray[x] = minimo;//1
+                
 
 
 
@@ -179,12 +176,11 @@ namespace ProyectoParcial1
         public void addAtendido()
         {
             Patient aux = pat2;
-            int ind = 15;
+            int ind = 100;
             while (aux != null)
             {
 
-                aux.NumeroAtendido = ind;
-                ind--;
+                aux.NumeroAtendido = random.Next(1,100);
                 aux = aux.Next;
             }
         }
@@ -212,7 +208,7 @@ namespace ProyectoParcial1
 
         public void showPatienByPriority(int prioridad)
         {
-            prioritySort("NumeroAtendido");
+            SelectionSort("NumeroAtendido");
             Patient aux = pat2;
 
             Console.WriteLine("prioridad {0}", prioridad);
