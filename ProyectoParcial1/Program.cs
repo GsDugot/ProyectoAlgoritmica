@@ -17,6 +17,22 @@ namespace ProyectoParcial1
         {
             PatientQueue pq = new PatientQueue();
             pq.createArray();
+            //pq.cambiarDatos(0, 4);
+            //pq.cambiarDatos(1, 5);
+            pq.addAtendido();
+
+            // pq.showPatients();
+            pq.prioritySort("NumeroAtendido");
+
+            pq.showPatients();
+            pq.prioritySort("NumeroLlegada");
+            pq.showPatients();
+            pq.showPatienByPriority(1);
+            pq.showPatienByPriority(2);
+
+
+
+
         }
     }
 }
