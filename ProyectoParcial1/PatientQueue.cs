@@ -47,27 +47,42 @@ namespace ProyectoParcial1
 
         public void simulate(int length)
         {
-            int n = 3;
+            int n = 0;
             int checkNum = 1;
-
-            for (int i = 0; i < length; i++)
+            bool isAllChecked = false;
+            int numeroPatient = 0;
+            while (!isAllChecked)
             {
-                int priority = random.Next(1, 3);
-                if (i == n || i == 1)
+                if (numeroPatient < length)
                 {
-                    
-                    addPatient(i + 1, priority, false);
-                    moveToChecked(checkNum);
-                    n = n + 3;
+                    int priority = random.Next(1, 3);
+                    addPatient(numeroPatient + 1, priority, false);
                     orderByQuickSort("Prioridad");
-                    checkNum++;
+                    numeroPatient++;
                 }
-                else
+                if(n ==2 && pat2 !=null)
                 {
-                    addPatient(i + 1, priority, false);
-                    orderByQuickSort("Prioridad");
-                }               
+                    moveToChecked(checkNum);
+                    n = 0;
+                    checkNum++;
+                    pat2 = pat2.Next;
+
+                }else
+                {
+                    n++;
+                }
+                if(pat2== null && length ==numeroPatient)
+                {
+                    isAllChecked = true;
+                }
+                //moveToChecked(checkNum);
+                  //      n = n + 3;
+                    //    checkNum++;
+                    
+                   
+                
             }
+            showPatients();
         }
 
         public void addPatient(int indx, int prior, bool state)
@@ -78,7 +93,6 @@ namespace ProyectoParcial1
                 pat = new Patient(indx, prior, state, 0, null);
                 pat2 = pat;
                 patArrival = pat;
-                pat3 = pat;
 
             }
             else
@@ -92,32 +106,30 @@ namespace ProyectoParcial1
 
         public void moveToChecked(int num)
         {
-            Patient aux = pat2;
-            
-            while (aux.Next.Next != null)
-            {
-                aux = aux.Next;
-            }
+            Patient auxH = pat2;
+
+            //  while (aux.Next.Next != null)
+            // {
+            //   aux = aux.Next;
+            //}
             if (checkedPat == null)
             {
-                checkedPat = aux.Next;
-                checkedPat.Estado = true;
-                checkedPat.NumeroAtendido = num;
-                pat = aux;
-                pat.Next = null;
+                checkedPat = new Patient(auxH.NumeroLlegada, auxH.Prioridad, true, num, null);
+                pat3 = checkedPat;
+                patArrival = checkedPat;
+
             }
             else
             {
-                Patient aux2 = checkedPat;
-                checkedPat = aux;
-                checkedPat.Estado = true;
-                checkedPat.NumeroAtendido = num;
-                aux2.Next = checkedPat;
+                Patient recent = new Patient(auxH.NumeroLlegada, auxH.Prioridad, true, num, null);
+                Patient aux = checkedPat;
+                checkedPat = recent;
+                aux.Next = checkedPat;
             }
         }
         public void showPatients()
         {
-            Patient aux = pat2;
+            Patient aux = pat3;
             while (aux != null)
             {
                 Console.WriteLine("No. paciente: " + aux.NumeroLlegada + " prioridad: " + aux.Prioridad +
