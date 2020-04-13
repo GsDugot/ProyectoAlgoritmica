@@ -268,7 +268,7 @@ namespace ProyectoParcial1
         public void SelectionSort(string OrdenType)
         {
 
-            Patient auxHead = pat2;
+            Patient auxHead = pat3;
             int size = getSize();
             for (int x = 0; x < size - 1; x++)//n-1
             {
@@ -294,7 +294,7 @@ namespace ProyectoParcial1
         }
         public int getSize()
         {
-            Patient aux = pat2;
+            Patient aux = pat3;
             int size = 0;
             while (aux != null)
             {
@@ -308,7 +308,7 @@ namespace ProyectoParcial1
         {
             Patient p1 = null;
             Patient p2 = null;
-            Patient aux = pat2;
+            Patient aux = pat3;
             Patient auxNext = null;
             Patient auxNext2 = null;
 
@@ -338,7 +338,7 @@ namespace ProyectoParcial1
             // p2 = auxNext;
             // p1.Next = p2;
             //p2.Next =auxNext.Next;
-            aux = pat2;
+            aux = pat3;
             for (int x = 0; x <= posicion2; x++)
             {
 
@@ -381,7 +381,7 @@ namespace ProyectoParcial1
         }
         public int getData(string data, int pos)
         {
-            Patient aux = pat2;
+            Patient aux = pat3;
             for (int x = 0; x < pos; x++)
             {
                 aux = aux.Next;
@@ -404,7 +404,7 @@ namespace ProyectoParcial1
         public void showPatienByPriority(int prioridad)
         {
             SelectionSort("NumeroAtendido");
-            Patient aux = pat2;
+            Patient aux = pat3;
 
             Console.WriteLine("prioridad {0}", prioridad);
 
