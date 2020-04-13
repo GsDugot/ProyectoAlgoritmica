@@ -17,20 +17,17 @@ namespace ProyectoParcial1
         public static void run()
         {
             PatientQueue pq = new PatientQueue();
+
             Stopwatch sw = new Stopwatch();
-            
-            
             bool isProgramEnd = false;
             Console.WriteLine("---------Sistema de pacientes-----");
             Console.WriteLine("Ingrese el tamaño de la lista");
             try {
                 int rango = int.Parse(Console.ReadLine());
-                ///
-                /// Metodo de cola
-                ///
-                pq.createArray(rango);
 
-
+                //pq.createArray(rango);
+                pq.simulate(rango);
+               
 
                 while (!isProgramEnd)
             {
@@ -82,9 +79,12 @@ namespace ProyectoParcial1
                                 pq.SelectionSort("NumeroAtendido");
                                 sw.Stop();
                                 pq.showPatients();
+                                //pq.showCheckedPatients();
+
                                 Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
                                 Console.WriteLine("----------");
                                 sw.Reset();
+
                             }
                             else if (method == 2)
                             {
@@ -92,6 +92,7 @@ namespace ProyectoParcial1
                                 pq.orderByQuickSort("NumeroAtendido");
                                 sw.Stop();
                                 pq.showPatients();
+                                //pq.showCheckedPatients();
                                 Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
                                 Console.WriteLine("----------");
                                 sw.Reset();

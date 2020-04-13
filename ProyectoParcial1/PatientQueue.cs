@@ -22,6 +22,7 @@ namespace ProyectoParcial1
         Patient pat2;
         Patient patArrival;
         Patient pat3;
+        Patient checkedPat;
 
         public void createArray(int length)
         {
@@ -44,6 +45,31 @@ namespace ProyectoParcial1
         }
         //showPatients();
 
+        public void simulate(int length)
+        {
+            int n = 3;
+            int checkNum = 1;
+
+            for (int i = 0; i < length; i++)
+            {
+                int priority = random.Next(1, 3);
+                if (i == n || i == 1)
+                {
+                    
+                    addPatient(i + 1, priority, false);
+                    moveToChecked(checkNum);
+                    n = n + 3;
+                    orderByQuickSort("Prioridad");
+                    checkNum++;
+                }
+                else
+                {
+                    addPatient(i + 1, priority, false);
+                    orderByQuickSort("Prioridad");
+                }               
+            }
+        }
+
         public void addPatient(int indx, int prior, bool state)
         {
 
@@ -61,6 +87,32 @@ namespace ProyectoParcial1
                 Patient aux = pat;
                 pat = recent;
                 aux.Next = pat;
+            }
+        }
+
+        public void moveToChecked(int num)
+        {
+            Patient aux = pat2;
+            
+            while (aux.Next.Next != null)
+            {
+                aux = aux.Next;
+            }
+            if (checkedPat == null)
+            {
+                checkedPat = aux.Next;
+                checkedPat.Estado = true;
+                checkedPat.NumeroAtendido = num;
+                pat = aux;
+                pat.Next = null;
+            }
+            else
+            {
+                Patient aux2 = checkedPat;
+                checkedPat = aux;
+                checkedPat.Estado = true;
+                checkedPat.NumeroAtendido = num;
+                aux2.Next = checkedPat;
             }
         }
         public void showPatients()
@@ -84,6 +136,11 @@ namespace ProyectoParcial1
                 first = first.Next;
             }
         }
+        public void showCheckedPatients()
+        {
+            showPatients(checkedPat);
+        }
+
         public Patient Partition(Patient left, Patient right, string sortBy)
         {
 
