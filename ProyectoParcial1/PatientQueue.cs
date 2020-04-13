@@ -29,15 +29,15 @@ namespace ProyectoParcial1
 
             for (int i = 0; i < size; i++)
             {
-                index = i + 1;
+                index = random.Next(1,size);
                 prior = random.Next(1, 3);
 
                 addPatient(index, prior, state);
             }
 
-            //quickSort(pat2, pat);
-            addAtendido();
-            showPatientsArrivalOrder(patArrival);
+            //orderByQuickSort("NumeroLlegada");
+            //addAtendido();
+            //showPatientsArrivalOrder(patArrival);
 
 
            // addPatient(index, prior, state);
@@ -74,7 +74,7 @@ namespace ProyectoParcial1
             }
         }
 
-        public void showPatientsArrivalOrder(Patient first)
+        public void showPatients(Patient first)
         {
 
             while (first != null)
@@ -84,8 +84,9 @@ namespace ProyectoParcial1
                 first = first.Next;
             }
         }
-        public Patient partition(Patient left, Patient right)
+        public Patient Partition(Patient left, Patient right, string sortBy)
         {
+
             if (left == right || left == null || left == null)
             {
                 return left;
@@ -93,46 +94,104 @@ namespace ProyectoParcial1
             Patient i = left;
             Patient j = left;
             int piv = right.NumeroLlegada;
-
-            while (left != right && left != null)
+            int piv2 = right.Prioridad;
+            int piv3 = right.NumeroAtendido;
+            switch (sortBy)
             {
-                if (left.NumeroLlegada < piv)
-                {
-                    i = j;
-                    int tmp = j.NumeroLlegada;
-                    j.NumeroLlegada = left.NumeroLlegada;
-                    left.NumeroLlegada = tmp;
-                    j = j.Next;
-                }
-                left = left.Next;
-            }
-            if (left != null)
-            {
-                int tmp2 = j.NumeroLlegada;
-                j.NumeroLlegada = piv;
-                right.NumeroLlegada = tmp2;
-            }
+                case "NumeroLlegada":
 
+                    while (left != right && left != null)
+                    {
+                        if (left.NumeroLlegada < piv)
+                        {
+                            i = j;
+                            int tmp = j.NumeroLlegada;
+                            j.NumeroLlegada = left.NumeroLlegada;
+                            left.NumeroLlegada = tmp;
+                            j = j.Next;
+                        }
+                        left = left.Next;
+                    }
+                    if (left != null)
+                    {
+                        int tmp2 = j.NumeroLlegada;
+                        j.NumeroLlegada = piv;
+                        right.NumeroLlegada = tmp2;
+                    }
+
+                    return i;
+
+                case "Prioridad":
+
+                    while (left != right && left != null)
+                    {
+                        if (left.Prioridad < piv2)
+                        {
+                            i = j;
+                            int tmp = j.Prioridad;
+                            j.Prioridad = left.Prioridad;
+                            left.Prioridad = tmp;
+                            j = j.Next;
+                        }
+                        left = left.Next;
+                    }
+                    if (left != null)
+                    {
+                        int tmp2 = j.Prioridad;
+                        j.Prioridad = piv2;
+                        right.Prioridad = tmp2;
+                    }
+                    return i;
+
+                case "NumeroAtendido":
+
+                    while (left != right && left != null)
+                    {
+                        if (left.NumeroAtendido < piv3)
+                        {
+                            i = j;
+                            int tmp = j.NumeroAtendido;
+                            j.NumeroAtendido = left.NumeroAtendido;
+                            left.NumeroAtendido = tmp;
+                            j = j.Next;
+                        }
+                        left = left.Next;
+                    }
+                    if (left != null)
+                    {
+                        int tmp2 = j.NumeroAtendido;
+                        j.NumeroAtendido = piv3;
+                        right.NumeroAtendido = tmp2;
+                    }
+                    return i;
+            }
             return i;
+
         }
-        public void quickSort(Patient first, Patient last)
+
+        public void orderByQuickSort(string by)
+        {
+            quickSort(pat2, pat, by);
+        }
+
+        public void quickSort(Patient first, Patient last, string order)
         {
             if (first == last)
             {
                 return;
             }
 
-            Patient pivotNode = partition(first, last);
-            quickSort(first, pivotNode);
+            Patient pivotNode = Partition(first, last, order);
+            quickSort(first, pivotNode, order);
             Patient current = pivotNode;
 
             if (pivotNode != null && pivotNode == first)
             {
-                quickSort(pivotNode.Next, last);
+                quickSort(pivotNode.Next, last, order);
             }
             else if (pivotNode != null && pivotNode.Next != null)
             {
-                quickSort(pivotNode.Next.Next, last);
+                quickSort(pivotNode.Next.Next, last, order);
             }
         }
 
@@ -161,9 +220,6 @@ namespace ProyectoParcial1
                 {
                     cambiarDatos(x, indice);
                 }
-
-
-
 
             }
         }

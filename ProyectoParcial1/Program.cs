@@ -17,6 +17,7 @@ namespace ProyectoParcial1
         {
             PatientQueue pq = new PatientQueue();
             
+            
             bool isProgramEnd = false;
             Console.WriteLine("---------Sistema de pacientes-----");
             Console.WriteLine("Ingrese el tamaño de la lista");
@@ -35,7 +36,8 @@ namespace ProyectoParcial1
                     Console.WriteLine("------------Método de ordenamiento------------");
                     Console.WriteLine("1.- Ordenar por selectionSort");
                     Console.WriteLine("2.- Ordenar por quickSort");
-                    int method = int.Parse(Console.ReadLine());
+
+                    int method = int.Parse(Console.ReadLine());           
 
                     Console.WriteLine("------------Reportes------------");
                     Console.WriteLine("1.- Ordenar por numero de ficha o de llegada");
@@ -57,7 +59,8 @@ namespace ProyectoParcial1
                             }
                             else if( method==2)
                             {
-
+                                pq.orderByQuickSort("NumeroLlegada");
+                                pq.showPatients();
                             }
                             break;
                         case 2:
@@ -68,20 +71,32 @@ namespace ProyectoParcial1
                             }
                             else if (method == 2)
                             {
-
+                                pq.orderByQuickSort("NumeroAtendido");
+                                pq.showPatients();
                             }
                             break;
                         case 3:
                             Console.WriteLine("---------Ingrese prioridad 1 o 2---------");
                             int prioridad = int.Parse(Console.ReadLine());
-                            if (method == 1)
+                            if (method == 1 && prioridad == 1)
                             {
                                 pq.SelectionSort("Prioridad");
-                                pq.showPatienByPriority(1);
+                                pq.showPatienByPriority(prioridad);
                             }
-                            else if (method == 2)
+                            else if (method == 2 && prioridad == 1)
                             {
-
+                                pq.orderByQuickSort("Prioridad");
+                                pq.showPatienByPriority(prioridad);
+                            }
+                            else if (method == 1 && prioridad == 2)
+                            {
+                                pq.orderByQuickSort("Prioridad");
+                                pq.showPatienByPriority(prioridad);
+                            }
+                            else if (method == 2 && prioridad == 2)
+                            {
+                                pq.orderByQuickSort("Prioridad");
+                                pq.showPatienByPriority(prioridad);
                             }
                             break;
                         case 4:
