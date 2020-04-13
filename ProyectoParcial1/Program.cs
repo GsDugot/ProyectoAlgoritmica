@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace ProyectoParcial1
         {
             PatientQueue pq = new PatientQueue();
 
+            Stopwatch sw = new Stopwatch();
             bool isProgramEnd = false;
             Console.WriteLine("---------Sistema de pacientes-----");
             Console.WriteLine("Ingrese el tamaño de la lista");
@@ -49,30 +51,51 @@ namespace ProyectoParcial1
                         case 1:
                             if(method == 1)
                             {
+                                sw.Start();
                                 pq.SelectionSort("NumeroLlegada");
+                                sw.Stop();                              
                                 pq.showPatients();
+                                Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
+                                Console.WriteLine("----------");
+                                sw.Reset();
 
 
                             }
                             else if( method==2)
                             {
+                                sw.Start();
                                 pq.orderByQuickSort("NumeroLlegada");
+                                sw.Stop();                               
                                 pq.showPatients();
+                                Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
+                                Console.WriteLine("----------");
+                                sw.Reset();
                             }
                             break;
                         case 2:
                             if (method == 1)
                             {
+                                sw.Start();
                                 pq.SelectionSort("NumeroAtendido");
-                                pq.showPatients();
-                                //pq.showCheckedPatients();
-                            }
-                            else if (method == 2)
-                            {
-                                pq.orderByQuickSort("NumeroAtendido");
+                                sw.Stop();
                                 pq.showPatients();
                                 //pq.showCheckedPatients();
 
+                                Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
+                                Console.WriteLine("----------");
+                                sw.Reset();
+
+                            }
+                            else if (method == 2)
+                            {
+                                sw.Start();
+                                pq.orderByQuickSort("NumeroAtendido");
+                                sw.Stop();
+                                pq.showPatients();
+                                //pq.showCheckedPatients();
+                                Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
+                                Console.WriteLine("----------");
+                                sw.Reset();
                             }
                             break;
                         case 3:
@@ -80,23 +103,43 @@ namespace ProyectoParcial1
                             int prioridad = int.Parse(Console.ReadLine());
                             if (method == 1 && prioridad == 1)
                             {
+                                sw.Start();
                                 pq.SelectionSort("Prioridad");
+                                sw.Stop();
                                 pq.showPatienByPriority(prioridad);
+                                Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
+                                Console.WriteLine("----------");
+                                sw.Reset();
                             }
                             else if (method == 2 && prioridad == 1)
                             {
+                                sw.Start();
                                 pq.orderByQuickSort("Prioridad");
+                                sw.Stop();
                                 pq.showPatienByPriority(prioridad);
+                                Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
+                                Console.WriteLine("----------");
+                                sw.Reset();
                             }
                             else if (method == 1 && prioridad == 2)
                             {
+                                sw.Start();
                                 pq.orderByQuickSort("Prioridad");
+                                sw.Stop();
                                 pq.showPatienByPriority(prioridad);
+                                Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
+                                Console.WriteLine("----------");
+                                sw.Reset();
                             }
                             else if (method == 2 && prioridad == 2)
                             {
+                                sw.Start();
                                 pq.orderByQuickSort("Prioridad");
+                                sw.Stop();
                                 pq.showPatienByPriority(prioridad);
+                                Console.WriteLine(" tomó {0:N0}", sw.ElapsedTicks);
+                                Console.WriteLine("----------");
+                                sw.Reset();
                             }
                             break;
                         case 4:
